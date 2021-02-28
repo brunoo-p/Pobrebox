@@ -15,6 +15,12 @@ namespace PobreBox.Controllers
     {
         private IUserCollection database = new UserCollection();
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok();
+        }
+
         [HttpGet("{email}")]
         public async Task<IActionResult> FindUser(string email)
         {

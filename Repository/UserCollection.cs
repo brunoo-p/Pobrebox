@@ -28,13 +28,14 @@ namespace PobreBox.Repository
         public async Task<User> FindUser(string email)
         {
             try
-            {  
+            {
                 return await Collection.FindAsync(
                     new BsonDocument { { "email", email } })
                     .Result
                     .FirstAsync();
-                
-            }catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -48,10 +49,10 @@ namespace PobreBox.Repository
         public async Task InsertDocuments(Document document, string id)
         {
             var filter = Builders<User>.Filter.Eq(user => user.Id, new ObjectId(id));
-            var user = Collection.FindAsync(filter);
+            var user = await Collection.FindAsync(filter);
             if(user != null)
             {
-                ;
+                
                 Document doc = new Document()
                 {
                     IdUser = new ObjectId(id),
